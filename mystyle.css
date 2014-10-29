@@ -3,6 +3,11 @@
 	padding: 0;
 }
 
+body  {
+    background-image: url('download.jpg');
+ }
+
+
 .fixed-size-square, .size-square, .square {
 	float: left;
 	margin: 20px;
@@ -13,7 +18,7 @@
     display: table;
     width: 200px;
     height: 200px;
-    background: #4679BD;
+    background: green;
 }
 .fixed-size-square span {
     display: table-cell;
@@ -26,7 +31,7 @@
     display: table;
     width: 200px;
     height: 200px;
-    background: #4679BD;
+    background: green;
 }
 .size-square span {
     display: table-cell;
@@ -39,7 +44,7 @@
     display: table;
     width: 200px;
     height: 200px;
-    background: #4679BD;
+    background: green;
 }
 .square span {
     display: table-cell;
@@ -51,6 +56,6 @@
 .btn {
 	width: 20px;
 	height: 30px;
-	margin: 
+	margin: 0
 }
 
