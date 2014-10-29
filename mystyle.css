@@ -1,0 +1,56 @@
+* {
+	margin: 0; 
+	padding: 0;
+}
+
+.fixed-size-square, .size-square, .square {
+	float: left;
+	margin: 20px;
+	zoom: 1; 
+}
+
+.fixed-size-square {
+    display: table;
+    width: 200px;
+    height: 200px;
+    background: #4679BD;
+}
+.fixed-size-square span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white
+}
+
+.size-square {
+    display: table;
+    width: 200px;
+    height: 200px;
+    background: #4679BD;
+}
+.size-square span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white
+}
+
+.square {
+    display: table;
+    width: 200px;
+    height: 200px;
+    background: #4679BD;
+}
+.square span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white
+}
+
+.btn {
+	width: 20px;
+	height: 30px;
+	margin: 
+}
+
