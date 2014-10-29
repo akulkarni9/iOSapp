@@ -4,20 +4,29 @@
 	<!--<meta name = "format-detection"	-->
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 	<link rel="stylesheet" type="text/css" href="mystyle.css">
-	<script type="text/javascript" src="popup.js">
-</script>
+	<script type="text/javascript">
+		function myFunction() {
+    		var person = prompt("Please enter your thoughts");
+    
+   			 if (person != null) {
+        		document.getElementById("demo").innerHTML =
+        		"Hello " + person + "! How are you today?";
+    		}
+		}
+	</script>
 </head>
 <body>
- 	<div>	
- 		<div class="fixed-size-square">
+ 	<div>
+ 		<!--<p id =	"demo"></p>-->
+ 		<div class="fixed-size-square" onclick="myFunction()">
     		<span>Past Thoughts</span>
 		</div>
 
-		<div class="size-square">
+		<div class="size-square" onclick="myFunction()">
     		<span>Present Thoughts</span>
 		</div>
 
-		<div class="square">
+		<div class="square"onclick="myFunction()">
     		<span>Future Thoughts</span>
 		</div>
 	</div>
