@@ -4,42 +4,61 @@
 	<!--<meta name = "format-detection"	-->
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 	<script type="text/javascript">
-		function myFunction() {
-    		var person = prompt("Please enter your thoughts");
-			function ballDrop() {
-				//if person = true {
-					iter = 0;
-					setId = 0;
-					down = true;
-					up = false;
-					bouncingBall = (is.VER5) ? document.getElementById("ball").style
-					: (is.NS) ? document.layers["ball"]
-					: document.all["ball"].style;
-					stillBall = (is.VER5) ? document.getElementById("staticBall").style
-					: (is.NS) ? document.layers["staticBall"] : document.all["staticBall"].style;
-					winH = (is.NS) ? window.innerHeight - 55 : document.body.offsetHeight - 55;
-					document.onmouseup = buttonUp;
-					if (is.NS4)
-						document.captureEvents(Event.MOUSEUP);
-					function buttonUp(e) {
-						if ( ((is.NS) ? e.which : event.button) != 1) return true;
-						if (setId != 0) clearInterval(setId);
-						bouncingBall.visibility="visible";
-						stillBall.visibility="hidden";
-						bouncingBall.left = (is.NS) ? e.pageX - 15 : event.offsetX - 15;
-						bouncingBall.top = (is.NS) ? e.pageY - 15 : event.offsetY - 15;
-						iter = 0;
-						setId = setInterval("generateGravity()", 20);
-						return true;
-					}
-				//}
-			}
-		}
-	</script>
+			var canvas = document.getElementById('myCanvas');
+      		var context = canvas.getContext('2d');
+      		var centerX = canvas.width / 2;
+      		var centerY = canvas.height / 2;
+      		var radius = 70;
+
+      		context.beginPath();
+      		context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      		context.fillStyle = 'green';
+      		context.fill();
+      		context.lineWidth = 5;
+	        context.strokeStyle = '#003300';
+    	    context.stroke();
+
+
+    		function myFunction() {
+            	var person = prompt("Please enter your thoughts");
+            	if (person != null){ 
+            		ballDrop();
+            	}
+            }	
+            function ballDrop() {
+                
+                    iter = 0;
+                    setId = 0;
+                    down = true;
+                    up = false;
+                    bouncingBall = (is.VER5) ? document.getElementById("ball").style: (is.NS) ? document.layers["ball"]: document.all["ball"].style;
+                    stillBall = (is.VER5) ? document.getElementById("staticBall").style: (is.NS) ? document.layers["staticBall"] : document.all["staticBall"].style;
+                    winH = (is.NS) ? window.innerHeight - 55 : document.body.offsetHeight - 55;
+                    document.onmouseup = buttonUp;
+                    if (is.NS4)
+                        document.captureEvents(Event.MOUSEUP);
+                    function buttonUp(e) {
+                        if ( ((is.NS) ? e.which : event.button) != 1) return true;
+                        if (setId != 0) clearInterval(setId);
+                        bouncingBall.visibility="visible";
+                        stillBall.visibility="hidden";
+                        bouncingBall.left = (is.NS) ? e.pageX - 15 : event.offsetX - 15;
+                        bouncingBall.top = (is.NS) ? e.pageY - 15 : event.offsetY - 15;
+                        iter = 0;
+                        setId = setInterval("generateGravity()", 20);
+                        return true;
+                    }
+                
+            }
+    </script>
 	<link rel="stylesheet" type="text/css" href="mystyle.css">
 	
 </head>
 <body>
+	<!--<input id = "input" />-->	
+	<input type="hidden" name="editFileName" id="editFileName" />
+	<input type="submit" id="SubmitEdit" style="display:none;" />	
+	<canvas id="myCanvas" width="578" height="200"></canvas>
  	<div id = "ball" style="visibility:hidden; position:absolute; left:100; top:10; height:34; width:34">
 		<img src="http://www.rewritables.net/ball.gif" height=30 width=30 alt="Bouncing ball">
 	</div>
@@ -56,6 +75,6 @@
     		<span>Future Thoughts</span>
 		</div>
 	</div>
-	<button>I've no thoughts</button>
+	<div><button>I've no thoughts</button></div>
 </body>
 </html>
