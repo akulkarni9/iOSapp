@@ -4,6 +4,31 @@
 <script type="text/javascript">
 	function popup () {
 		var thought = prompt("Please enter your thougt");
+		if (thought != null) {
+       		var context;
+    		var dx= 4;  
+    		var dy=4;
+    		var y=25;
+    		var x=10;
+    		function draw(){
+        		context= myCanvas.getContext('2d');
+        		context.clearRect(0,0,400,400);
+        		context.beginPath();
+        		context.fillStyle="#FFBAA3";
+        		context.arc(x,y,10,0,Math.PI*2,true);
+        		context.closePath();
+        		context.fill();
+        		if( x<0 || x>100)
+        			dx=-dx;
+        		if( y<0 || y>300)
+           			dy=0;
+            		//x+=dx;
+            		y+=dy;
+        	}
+    		setInterval(draw,10); 
+    	}
+    	else
+    		window.alert("You should enter a thought");
 	}
 </script>
 <style>
@@ -72,6 +97,7 @@ button {
 </head>
 <body>
 <h1>Welcome to zen module</h1>
+<p id="demo"></p>
 <div class='divn'></div> 
 <div class="fixed-size-square" onclick="popup();">
   <span>Past Thoughts</span>
