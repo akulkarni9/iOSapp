@@ -5,11 +5,13 @@
 	function popup () {
 		var thought = prompt("Please enter your thougt");
 		if (thought != null) {
+       		
        		var context;
     		var dx= 4;  
     		var dy=4;
     		var y=25;
     		var x=10;
+    		var counter = 0;
     		function draw(){
         		context= myCanvas.getContext('2d');
         		context.clearRect(0,0,400,400);
@@ -25,7 +27,9 @@
             		//x+=dx;
             		y+=dy;
         	}
-    		setInterval(draw,10); 
+        	
+      
+			setInterval(draw,10); 
     	}
     	else
     		window.alert("You should enter a thought");
@@ -81,12 +85,17 @@ button {
         position: relative;
         margin: 0px auto;
 }
+#divn {
+	margin: 0px auto;
+}
 </style>
 </head>
 <body>
 <h1>Welcome to zen module</h1>
 <p id="demo"></p>
-<canvas id="myCanvas" width="100" height="300"></canvas>
+<div id="divn">
+<canvas id="myCanvas" width="100" height="300" style="transform: inherit; margin: 30px;"></canvas>
+</div>
 
 <div class="fixed-size-square" onclick="popup();">
   <span>Past Thoughts</span>
