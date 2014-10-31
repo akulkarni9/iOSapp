@@ -1,59 +1,75 @@
+<!DOCTYPE html>
 <html>
-<head id = "hd">
-	<meta charset = "utf-8" />
-	<!--<meta name = "format-detection"	-->
-	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-	<script type="text/javascript">
-			
-		// function init () {
-		
-		// }
-		
-
-    	function myFunction() {
-            var person = prompt("Please enter your thoughts");
-        }	
-                
-            
-    </script>
-	<link rel="stylesheet" type="text/css" href="mystyle.css">
-	
+<head>
+<style>
+.fixed-size-square {
+    display: table;
+    width: 200px;
+    height: 200px;
+    background: green;
+}
+.fixed-size-square span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white
+}
+.size-square {
+    display: table;
+    width: 200px;
+    height: 200px;
+    background: green;
+}
+.size-square span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white
+}
+.square {
+    display: table;
+    width: 200px;
+    height: 200px;
+    background: green;
+}
+.square span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white
+}
+.fixed-size-square, .size-square, .square {
+	float: left;
+	margin: 20px;
+	zoom: 1; 
+	position: relative;
+        box-shadow: 10px 10px 5px #888888;
+}
+button {
+        position: relative;
+        margin: 0px auto;
+}
+div {  
+	padding:30px; 
+	background:red; 
+	width:1px; 
+	border-radius:25px; } 
+</style>
 </head>
 <body>
-	<div>
-		<canvas id="myCanvas"></canvas>
-	</div>
-	</div>
- 		<!--<p id =	"demo"></p>-->
- 		<div class="fixed-size-square" onclick="myFunction()">
-    		<span>Past Thoughts</span>
-		</div>
+<h1>Welcome to zen module</h1>
+<div></div> 
+<div class="fixed-size-square">
+  <span>Past Thoughts</span>
+</div>
 
-		<div class="size-square" onclick="myFunction()">
-    		<span>Present Thoughts</span>
-		</div>
+<div class="size-square" onclick="myFunction()">
+    <span>Present Thoughts</span>
+</div>
 
-		<div class="square"onclick="myFunction()">
-    		<span>Future Thoughts</span>
-		</div>
-	</div>
-	<div><button>I've no thoughts</button></div>
-
-	<script type="text/javascript">
-		var canvas = document.getElementById('myCanvas');
-      	var context = canvas.getContext('2d');
-      	var centerX = canvas.width / 2;
-      	var centerY = canvas.height / 2;
-      	var radius = 35;
-
-      	context.beginPath();
-      	context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-      	context.fillStyle = 'red';
-      	context.fill();
-      	context.lineWidth = 5;
-      	// context.strokeStyle = '#003300';
-      	// context.stroke();
-	</script>
-	
+<div class="square" onclick="myFunction()">
+    <span>Future Thoughts</span>
+</div>
+<button>I've no thoughts</button>
 </body>
 </html>
