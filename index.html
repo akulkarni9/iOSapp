@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head><style>html, body {
+<head>
+<style>
+html, body {
     margin:0;
 }
 div.time {
@@ -36,71 +38,86 @@ canvas {
     left:35px;
     margin:20px; 
 }
-</style></head><body>
-<div class="time"><span>Past Thoughts</span>
+body {
+    background-image: url('hero.jpg'); 
+    background-size: cover;
+}
+#img {
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    left: 212px;
+    margin: 100px;
+}
+/*#img1 {
+    position: fixed;
+    top: 3px;
+    right: 172px;
+    left: 5px;
+    margin: 100px;
+}*/
+</style>
+</head>
+<body>
+<div><p><center style="color: #fff;">PRESS THE BUTTON AND PUT YOUR THOUGHTS IN RESPECTIVE BOX.</center><p><div>
+<image src="past.png" id="img" onclick="newBall(0)"></image>
+<image src="present.png" style="margin: 32px; position: absolute; left: 579px;" onclick="newBall(0)"></image>
+<image src="future.png" style="margin: 32px; position: absolute; right: 232px; margin: 55px;" onclick="newBall(0)"></image>
+<image src="box.png" style="margin: 259px; left: 75px; position: absolute;"></image>
+<image src="box1.png" style="margin: 258px; position: absolute; left: 377px;"></image>
+<image src="box2.png" style="margin: 258px; position: absolute; right: 44px;"></image>
 
-</div>
-<div class="time"><span>Present Thoughts</span>
-
-</div>
-<div class="time"><span>Future Thoughts</span>
-
-</div>
-<br style="clear: both" />
-<canvas id="myCanvas1" width="150" height="235" onclick="newBall(0)"></canvas>
-<canvas id="myCanvas2" width="150" height="235" onclick="newBall(1)"></canvas>
-<canvas id="myCanvas3" width="150" height="235" onclick="newBall(2)"></canvas>
 <script type="text/javascript">
-var balls = [[], [], []],
+
+    var balls = [[], [], []],
     canvases = document.getElementsByTagName('canvas'),
     context = [],
     interval,
     boxWidth = 150,
     ballRadius = 10,
     canvasHeight = 235;
-for (var i = 0; i < canvases.length; i++) {
-    context.push(canvases[i].getContext('2d'));
-}
-
-function draw() {
-    var movement = false;
-    for (var i = 0; i < 3; i++) {
-        context[i].clearRect(0, 0, boxWidth, canvasHeight);
-        for (var j = 0; j < balls[i].length; j++) {
-            if (balls[i][j].y < balls[i][j].yStop) {
-                balls[i][j].y += 4;
-                movement = true;
+    for (var i = 0; i < canvases.length; i++) {
+        context.push(canvases[i].getContext('2d'));
+    }
+    function draw() {
+        alert("Hello");
+        var movement = false;
+        for (var i = 0; i < context.length; i++) {
+            context[i].clearRect(0, 0, boxWidth, canvasHeight);
+            for (var j = 0; j < balls[i].length; j++) {
+                if (balls[i][j].y < balls[i][j].yStop) {
+                    balls[i][j].y += 4;
+                    movement = true;
+                }
+                context[i].beginPath();
+                context[i].fillStyle = "red";
+                context[i].arc(balls[i][j].x, balls[i][j].y, ballRadius, 0, Math.PI * 2, true);
+                context[i].closePath();
+                context[i].fill();
             }
-            context[i].beginPath();
-            context[i].fillStyle = "red";
-            context[i].arc(balls[i][j].x, balls[i][j].y, ballRadius, 0, Math.PI * 2, true);
-            context[i].closePath();
-            context[i].fill();
+        }
+        if (!movement) {
+            clearInterval(interval);
+            interval = null;
         }
     }
-    if (!movement) {
-        clearInterval(interval);
-        interval = null;
-    }
-}
-
-function newBall(n) {
-    console.log('new ball', n);
-    var last = balls[n][balls[n].length - 1],
-        ball = {x: ballRadius, y: ballRadius, yStop: canvasHeight - ballRadius};
-    if (last) {
-        if (last.x < boxWidth - ballRadius * 3) {
-             ball.x = last.x + ballRadius * 2;
-             ball.yStop = last.yStop;
-        } else {
-             ball.yStop = last.yStop - ballRadius * 2;
+    function newBall(n) {
+        console.log( 'new ball', n);
+        var last = balls[n][balls[n].length - 1],
+            ball = {x: ballRadius, y: ballRadius, yStop: canvasHeight - ballRadius};
+        if (last) {
+            if (last.x < boxWidth - ballRadius * 3) {
+                 ball.x = last.x + ballRadius * 2;
+                 ball.yStop = last.yStop;
+            } else {
+                 ball.yStop = last.yStop - ballRadius * 2;
+            }
+        }
+        balls[n].push(ball);
+        if (!interval) {
+            interval = setInterval(draw, 10);
         }
     }
-    balls[n].push(ball);
-    if (!interval) {
-        interval = setInterval(draw, 10);
-    }
-}
 </script>
 </body>
 </html>
