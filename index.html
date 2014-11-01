@@ -6,6 +6,8 @@
             
         var myCanvas, context;
 		var balllist = [];
+		var balllist1 = [];
+		var balllist2 = [];
 		var counter = 0;
 		var interval;
 
@@ -18,6 +20,8 @@
 
     	// create a new ball
     	balllist.push({x: x, y: y, dy: dy});
+    	balllist1.push({x: x,y: y,dy: dy});
+    	balllist2.push({x: x,y: y,dy: dy});
 
     	myCanvas = document.getElementById('myCanvas' + n);
     	context = myCanvas.getContext('2d');
@@ -25,7 +29,9 @@
     	function draw() {
         	context.clearRect(0,0,200,235);
         	for (var i = 0; i < balllist.length; i++) {
-            	var ball = balllist[i];
+        		for (var j = 0; j < balllist1.length; j++) {
+        		var ball = balllist[i];
+        		var ball1 = balllist1[i];
             	context.beginPath();
             	context.fillStyle="red";
             	context.arc(ball.x, ball.y, 10, 0, Math.PI*2, true);
@@ -36,7 +42,14 @@
             	}
             	if(ball.y < 0 || ball.y > 224) ball.dy = 0;
             	ball.y += ball.dy;
+
+            	if (j == balllist1.length - 1 && ball1.y > 300) {
+                	clearInterval(interval);
+            	}
+            	if(ball1.y < 0 || ball1.y > 224) ball1.dy = 0;
+            	ball.y += ball.dy;
         	}
+        }
     	}
     	clearInterval(interval);
     	interval = setInterval(draw, 10);
