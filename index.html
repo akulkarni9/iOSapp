@@ -3,31 +3,45 @@
 <head>
 <script type="text/javascript">
     function popup (n) {
-            var context;
-            var dx= 4;  
-            var dy=4;
-            var y=25;
-        var elWidth=150;
-        var ballWidth=10;
-            var x=(elWidth+ballWidth)/2;
-            var counter = 0;
-        var myCanvas=document.getElementById('myCanvas'+n);
-            function draw(){
-                context= myCanvas.getContext('2d');
-                context.clearRect(0,0,200,235);
-                context.beginPath();
-                context.fillStyle="red";
-                context.arc(x,y,10,0,Math.PI*2,true);
-                context.closePath();
-                context.fill();
-        if(y>200){clearInterval(interval);}
-                if( y<0 || y>200)dy=0;
-                y+=dy;
-        myCanvas.className='active';
-            }
+            
+        var myCanvas, context;
+		var balllist = [];
+		var counter = 0;
+		var interval;
 
+		window.popup = function (n) {
+    	var dy = 4, y = 25;
+    	var elWidth = 150;
+    	var ballWidth = 10;
+    	var x= (elWidth + ballWidth) / 2 + counter;
+    	counter += 10;
 
-            var interval=setInterval(draw,10);
+    	// create a new ball
+    	balllist.push({x: x, y: y, dy: dy});
+
+    	myCanvas = document.getElementById('myCanvas' + n);
+    	context = myCanvas.getContext('2d');
+
+    	function draw() {
+        	context.clearRect(0,0,200,235);
+        	for (var i = 0; i < balllist.length; i++) {
+            	var ball = balllist[i];
+            	context.beginPath();
+            	context.fillStyle="red";
+            	context.arc(ball.x, ball.y, 10, 0, Math.PI*2, true);
+            	context.closePath();
+            	context.fill();
+            	if (i == balllist.length - 1 && ball.y > 300) {
+                	clearInterval(interval);
+            	}
+            	if(ball.y < 0 || ball.y > 224) ball.dy = 0;
+            	ball.y += ball.dy;
+        	}
+    	}
+    	clearInterval(interval);
+    	interval = setInterval(draw, 10);
+	}
+
     }
 </script>
 <style>
@@ -64,21 +78,25 @@ canvas{
     z-index:10000;
     transform: inherit;
     float: left;
-    margin: 20px;
+   /* margin: 20px;*/
     zoom: 1; 
     position: relative;
     top: -200px;
     left:35px;
     margin:20px;
 }
-#myCanvas1{clear:left;}
+#myCanvas1{
+	clear:left; 
+	margin: -13px; 
+	position:relative;
+}
 </style>
 </head>
 <body>
 <div class="time"><span>Past Thoughts</span></div>
 <div class="time"><span>Present Thoughts</span></div>
 <div class="time"><span>Future Thoughts</span></div>
-<canvas id="myCanvas1" width="150" height="235" onclick="popup(1)"></canvas>
+<canvas id="myCanvas1" width="150" height="300" onclick="popup(1)"></canvas>
 <canvas id="myCanvas2" width="150" height="235" onclick="popup(2)"></canvas>
 <canvas id="myCanvas3" width="150" height="235" onclick="popup(3)"></canvas>
 </body>
