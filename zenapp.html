@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Ajay Kulkarni">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Zen Application</title>
+
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">
+	body {
+	margin: 0;
+	padding: 0;
+	background:url(img/hero.jpg) no-repeat fixed center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 100%;
+	}
+	
+	p {
+	color:#fff;
+	padding:20px 0px 0px 0px;
+	}
+	.col-lg-4 {
+	padding:0em 10em 0em 10em;	
+	}
+	
+	#myCanvas1, #myCanvas2, #myCanvas3 {
+	margin-top:-140px;
+	height:134px;
+	width:331px;
+	margin-left:20px;
+	margin-right:20px;
+}
+
+.container {
+padding-top:100px;
+}
+/*
+#myCanvas2 {
+	position: absolute;
+	left: 453px;
+}
+#myCanvas3 {
+	position: absolute;
+	right: 113px;
+}*/
+	</style>
+</head>
+
+<body>
+		<p class="text-center">PRESS THE BUTTON AND PUT YOUR THOUGHTS IN RESPECTIVE BOX.<p>
+		
+		<div class="container">
+		
+			<div class="row">
+			
+			<div class="col-lg-4">
+			<img class="img-circle" id = "img1" src="img/past.png" alt="Past" style="width: 160px; height: 160px;margin:0px auto;"><br/>
+			<img src="img/box.png"  id = "img4" style="width: 120px; height: 190px;margin:0px auto;margin:0px 20px 0px 20px;"><br/>
+			<canvas id="myCanvas1"  onclick="newBall(0);"></canvas>
+			</div><!--/ First col-lg-4 end -->
+			
+			<div class="col-lg-4">
+			<img class="img-circle" id = "img2" src="img/present.png" alt="Past" style="width: 160px; height: 160px;margin:0px auto;"><br/>
+			<img src="img/box1.png" id = "img5" style="width: 120px; height: 190px;margin:0px auto;margin:0px 20px 0px 20px;"><br/>
+			<canvas id="myCanvas2" onclick="newBall(1);"></canvas>
+			</div><!--/ Second col-lg-4 end -->
+			
+			<div class="col-lg-4">
+			<img class="img-circle" id = "img3" src="img/future.png" alt="Past" style="width: 160px; height: 160px;margin:0px auto;"><br/>
+			<img src="img/box2.png" id = "img6" style="width: 120px; height: 190px;margin:0px auto;margin:0px 20px 0px 20px;"><br/>
+			<canvas id="myCanvas3" onclick="newBall(2);"></canvas>
+			</div><!--/ Third col-lg-4 end -->
+			<div class="clearfix"></div>
+			
+			
+			
+			
+			</div><!--/row-->
+			
+		</div><!--/container -->
+		<script type="text/javascript">
+	var balls = [[], [], []],
+    canvases = document.getElementsByTagName('canvas'),
+    context = [],
+    interval,
+    boxWidth = 150,
+    ballRadius = 10,
+    canvasHeight = 134;
+for (var i = 0; i < canvases.length; i++) {
+    context.push(canvases[i].getContext('2d'));
+}
+
+function draw() {
+    var movement = false;
+    for (var i = 0; i < 3; i++) {
+        context[i].clearRect(0, 0, boxWidth, canvasHeight);
+        for (var j = 0; j < balls[i].length; j++) {
+            if (balls[i][j].y < balls[i][j].yStop) {
+                balls[i][j].y += 4;
+                movement = true;
+            }
+            context[i].beginPath();
+            context[i].fillStyle = "red";
+            context[i].arc(balls[i][j].x, balls[i][j].y, ballRadius, 0, Math.PI * 2, true);
+            context[i].closePath();
+            context[i].fill();
+        }
+    }
+    if (!movement) {
+        clearInterval(interval);
+        interval = null;
+    }
+}
+
+function newBall(n) {
+    console.log('new ball', n);
+    var last = balls[n][balls[n].length - 1],
+        ball = {x: ballRadius, y: ballRadius, yStop: canvasHeight - ballRadius};
+    if (last) {
+        if (last.x < boxWidth - ballRadius * 4) {
+             ball.x = last.x + ballRadius * 2;
+             ball.yStop = last.yStop;
+        } else {
+             ball.yStop = last.yStop - ballRadius * 2;
+        }
+    }
+    balls[n].push(ball);
+    if (!interval) {
+        interval = setInterval(draw, 10);
+    }
+}
+
+</script>
+</body>
+</html>
