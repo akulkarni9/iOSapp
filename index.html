@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Ajay Kulkarni">
-    <link rel="icon" href="../../favicon.ico">
+    <meta name="author" content="">
+    
+    <title>Zen</title>
 
-    <title>Zen Application</title>
-
+    <!-- Bootstrap core CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<style type="text/css">
 	body {
@@ -27,30 +27,51 @@
 	color:#fff;
 	padding:20px 0px 0px 0px;
 	}
-	.col-lg-4 {
-	padding:0em 10em 0em 10em;	
-	}
-	
-	#myCanvas1, #myCanvas2, #myCanvas3 {
-	margin-top:-140px;
-	height:134px;
-	width:331px;
-	margin-left:20px;
-	margin-right:20px;
+#myCanvas1 {
+	position: relative;
+	z-index:1;
+	float:left;
+	margin-left: 85px;
+}
+#myCanvas2 {
+	position: relative;
+	z-index:1;
+	float:left;
+	margin-left: 85px;
+}
+#myCanvas3 {
+	position: relative;
+	z-index:1;
+	float:left;
+	margin-left: 85px;
+}
+#myCanvas1, #myCanvas2, #myCanvas3 {
+	margin-top: -335px;
 }
 
 .container {
-padding-top:100px;
+padding-top:50px;
 }
-/*
-#myCanvas2 {
-	position: absolute;
-	left: 453px;
+ img {margin:60px;float:left;}
+@media screen and (max-width: 60.75em){
+    .container {
+padding-top:0px;
 }
-#myCanvas3 {
-	position: absolute;
-	right: 113px;
-}*/
+    img {margin:inherit;float:left;}
+    #myCanvas1, #myCanvas2, #myCanvas3 {
+     margin-left: 25px;
+     margin-top:-275px;
+}
+}
+
+@media screen and (max-width: 30em){
+img {margin:inherit;float:left;}
+#myCanvas1, #myCanvas2, #myCanvas3 {
+margin-left: inherit;
+}
+}
+
+
 	</style>
 </head>
 
@@ -61,28 +82,24 @@ padding-top:100px;
 		
 			<div class="row">
 			
-			<div class="col-lg-4">
-			<img class="img-circle" id = "img1" src="https://cloud.githubusercontent.com/assets/7793763/4875427/6ddfec82-6296-11e4-80e6-40e8e6370d00.png" alt="Past" style="width: 160px; height: 160px;margin:0px auto;"><br/>
-			<img src="https://cloud.githubusercontent.com/assets/7793763/4875384/2096b984-6295-11e4-8407-e310916fd6ed.png"  id = "img4" style="width: 120px; height: 190px;margin:0px auto;margin:0px 20px 0px 20px;"><br/>
-			<canvas id="myCanvas1"  onclick="newBall(0);"></canvas>
+			<div class="col-xs-4">
+			<img class="img-responsive" src="https://cloud.githubusercontent.com/assets/7793763/4913976/4a3a0bce-64bb-11e4-9402-1aaf39097730.png" id = "img1">
+			<br style="clear: both" />
+			<canvas id="myCanvas1" width="134px" height="331px" onclick="newBall(0);"></canvas>
 			</div><!--/ First col-lg-4 end -->
 			
-			<div class="col-lg-4">
-			<img class="img-circle" id = "img2" src="https://cloud.githubusercontent.com/assets/7793763/4875429/8a57e5fe-6296-11e4-8b65-fb202874b160.png" alt="Past" style="width: 160px; height: 160px;margin:0px auto;"><br/>
-			<img src="https://cloud.githubusercontent.com/assets/7793763/4875384/2096b984-6295-11e4-8407-e310916fd6ed.png" id = "img5" style="width: 120px; height: 190px;margin:0px auto;margin:0px 20px 0px 20px;"><br/>
-			<canvas id="myCanvas2" onclick="newBall(1);"></canvas>
+			<div class="col-xs-4">
+			<img class="img-responsive" src="https://cloud.githubusercontent.com/assets/7793763/4913997/88986b2c-64bb-11e4-8f32-951c7b929874.png" id="img2">
+			<br style="clear: both" />
+			<canvas id="myCanvas2" width="134px" height="331px" onclick="newBall(1);"></canvas>
 			</div><!--/ Second col-lg-4 end -->
 			
-			<div class="col-lg-4">
-			<img class="img-circle" id = "img3" src="https://cloud.githubusercontent.com/assets/7793763/4875433/a868cc34-6296-11e4-9029-116b32bed7a6.png" alt="Past" style="width: 160px; height: 160px;margin:0px auto;"><br/>
-			<img src="https://cloud.githubusercontent.com/assets/7793763/4875384/2096b984-6295-11e4-8407-e310916fd6ed.png" id = "img6" style="width: 120px; height: 190px;margin:0px auto;margin:0px 20px 0px 20px;"><br/>
-			<canvas id="myCanvas3" onclick="newBall(2);"></canvas>
+			<div class="col-xs-4">
+			<img class="img-responsive" src="https://cloud.githubusercontent.com/assets/7793763/4914023/f0d1e31c-64bb-11e4-85b6-f542a209fbc0.png" id="img3">
+			<br style="clear: both" />
+			<canvas id="myCanvas3" width="134px" height="331px" onclick="newBall(2);"></canvas>	
 			</div><!--/ Third col-lg-4 end -->
-			<div class="clearfix"></div>
-			
-			
-			
-			
+						
 			</div><!--/row-->
 			
 		</div><!--/container -->
@@ -93,7 +110,7 @@ padding-top:100px;
     interval,
     boxWidth = 150,
     ballRadius = 10,
-    canvasHeight = 134;
+    canvasHeight = 265;
 for (var i = 0; i < canvases.length; i++) {
     context.push(canvases[i].getContext('2d'));
 }
