@@ -7,172 +7,53 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-    <title>Zen</title>
+    <title>Facebook and twitter log in</title>
 
     <!-- Bootstrap core CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
+
 	<style type="text/css">
 	body {
-	margin: 0;
-	padding: 0;
-	background:url(https://cloud.githubusercontent.com/assets/7793763/4875437/de953c0c-6296-11e4-935e-4b206cf516de.jpg) no-repeat fixed center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	height: 100%;
+		margin: 0;
+		padding: 0;
+		background:url(img/nature1.jpg) no-repeat fixed center center;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		height: 100%;
 	}
-	
-	p {
-	color:#fff;
-	padding:20px 0px 0px 0px;
+	.button {
+	  padding:5px;
+	  background-color: #dcdcdc;
+	  border: 1px solid #666;
+	  color:#000;
+	  text-decoration:none;
+	  text-align: center;
+	  margin: 360px;
+	  position: absolute;
+	  left: 235px;
+	  border-radius: 10px;
+	  background-color: #f1a; 
+	  /*padding-left: 90px;
+	   padding-right: 80px;*/
 	}
-#myCanvas1 {
-	position: relative;
-	z-index:1;
-	float:left;
-	margin-left: 85px;
-}
-#myCanvas2 {
-	position: relative;
-	z-index:1;
-	float:left;
-	margin-left: 85px;
-}
-#myCanvas3 {
-	position: relative;
-	z-index:1;
-	float:left;
-	margin-left: 85px;
-}
-#myCanvas1, #myCanvas2, #myCanvas3 {
-	margin-top: -335px;
-}
-
-.container {
-padding-top:50px;
-}
- img {margin:60px;float:left;}
-@media screen and (max-width: 60.75em){
-	p { 
-		margin: 0px;
-		padding: 0px;
+	button:hover {
+  		color:#fff;
 	}
-    .container {
-padding-top:0px;
-}
-    img {margin:inherit;float:left;}
-    .img-responsive {
-		display: block;
-		width: 120px;
-		max-width:inherit;
-		height:288px;
-	}
-    #myCanvas1, #myCanvas2, #myCanvas3 {
-     margin-left: 25px;
-     margin-top:-275px;
-}
-}
-
-@media screen and (max-width: 30em){
-	p { 
-		margin: 0px;
-		padding: 0px;
-	}
-    .container {
-		padding-top:0px;
-		margin-top:-10px;
-     }
-img {margin:inherit;float:left;}
-#myCanvas1, #myCanvas2, #myCanvas3 {
-margin-left: inherit;
-}
-}
-
-
+	/*div {
+		position: absolute;
+		overflow: auto;
+	 border: 1px solid black;
+	 /*width: 1200px;*/
+	 /*padding-left: 90px;
+	 padding-right: 80px;*/
+	/*}*/
 	</style>
 </head>
-
 <body>
-		<p class="text-center">PRESS THE BUTTON AND PUT YOUR THOUGHTS IN RESPECTIVE BOX.<p>
-		
-		<div class="container">
-		
-			<div class="row">
-			
-			<div class="col-xs-4">
-			<img class="img-responsive" src="https://cloud.githubusercontent.com/assets/7793763/4913976/4a3a0bce-64bb-11e4-9402-1aaf39097730.png" id = "img1">
-			<br style="clear: both" />
-			<canvas id="myCanvas1" width="134px" height="331px" onclick="newBall(0);"></canvas>
-			</div><!--/ First col-lg-4 end -->
-			
-			<div class="col-xs-4">
-			<img class="img-responsive" src="https://cloud.githubusercontent.com/assets/7793763/4913997/88986b2c-64bb-11e4-8f32-951c7b929874.png" id="img2">
-			<br style="clear: both" />
-			<canvas id="myCanvas2" width="134px" height="331px" onclick="newBall(1);"></canvas>
-			</div><!--/ Second col-lg-4 end -->
-			
-			<div class="col-xs-4">
-			<img class="img-responsive" src="https://cloud.githubusercontent.com/assets/7793763/4914023/f0d1e31c-64bb-11e4-85b6-f542a209fbc0.png" id="img3">
-			<br style="clear: both" />
-			<canvas id="myCanvas3" width="134px" height="331px" onclick="newBall(2);"></canvas>	
-			</div><!--/ Third col-lg-4 end -->
-						
-			</div><!--/row-->
-			
-		</div><!--/container -->
-		<script type="text/javascript">
-	var balls = [[], [], []],
-    canvases = document.getElementsByTagName('canvas'),
-    context = [],
-    interval,
-    boxWidth = 150,
-    ballRadius = 10,
-    canvasHeight = 265;
-for (var i = 0; i < canvases.length; i++) {
-    context.push(canvases[i].getContext('2d'));
-}
-
-function draw() {
-    var movement = false;
-    for (var i = 0; i < 3; i++) {
-        context[i].clearRect(0, 0, boxWidth, canvasHeight);
-        for (var j = 0; j < balls[i].length; j++) {
-            if (balls[i][j].y < balls[i][j].yStop) {
-                balls[i][j].y += 4;
-                movement = true;
-            }
-            context[i].beginPath();
-            context[i].fillStyle = "red";
-            context[i].arc(balls[i][j].x, balls[i][j].y, ballRadius, 0, Math.PI * 2, true);
-            context[i].closePath();
-            context[i].fill();
-        }
-    }
-    if (!movement) {
-        clearInterval(interval);
-        interval = null;
-    }
-}
-
-function newBall(n) {
-    console.log('new ball', n);
-    var last = balls[n][balls[n].length - 1],
-        ball = {x: ballRadius, y: ballRadius, yStop: canvasHeight - ballRadius};
-    if (last) {
-        if (last.x < boxWidth - ballRadius * 4) {
-             ball.x = last.x + ballRadius * 2;
-             ball.yStop = last.yStop;
-        } else {
-             ball.yStop = last.yStop - ballRadius * 2;
-        }
-    }
-    balls[n].push(ball);
-    if (!interval) {
-        interval = setInterval(draw, 10);
-    }
-}
-
-</script>
+	<!-- <div class="div1" style="width: 400px;"> -->
+		<button class="button" id="save">Facebook Login</button>
+	<!-- </div> -->
 </body>
 </html>
