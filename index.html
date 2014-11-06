@@ -12,51 +12,113 @@
     <!-- Bootstrap core CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 
-	<style type="text/css">
-	body {
-		margin: 0;
-		padding: 0;
-		background:url(https://cloud.githubusercontent.com/assets/7793763/4922620/a71a1eb2-6513-11e4-9480-7b3fe6b854cb.jpg) no-repeat fixed center center;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-		height: 100%;
-	}
-	.button {
-	  padding:5px;
-	  background-color: #dcdcdc;
-	  border: 1px solid #666;
-	  color:#000;
-	  text-decoration:none;
-	  text-align: center;
-	  margin: 360px;
-	  position: absolute;
-	  /*left: 235px;*/
-	  right: -139px;
-	  top: -130px;
-	  border-radius: 10px;
-	  background-color: #f1a; 
-	  overflow: hidden;
-	  /*padding-left: 90px;
-	   padding-right: 80px;*/
-	}
-	button:hover {
-  		color:#fff;
-	}
-	/*div {
-		position: absolute;
-		overflow: auto;
-	 border: 1px solid black;
-	 /*width: 1200px;*/
-	 /*padding-left: 90px;
-	 padding-right: 80px;*/
-	/*}*/
+		<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+			background:url(img/bg_pg1.jpg) no-repeat fixed center center;
+			position: relative;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			height: 100%;
+		}
+		
+		div.center {
+		width:30%;
+		min-width:300px;
+		height:auto;
+		padding:0em 5em 2em 5em;
+		margin:0px auto;
+		background:rgba(255, 255, 255, 0.72);
+		border-radius:10px;
+		}
+		
+		
+		.div1 {
+			position: absolute;
+			height: 303px;
+			width: 392px;
+			margin: 181px;
+			background-color: #fff;
+			border-radius: 10px;
+			left: 264px; 
+			opacity: 0.6;
+		}
+		
+		#img1 {
+			position: relative;
+			margin: -75px 40px 20px 40px;
+			z-index:1;
+			display: inline-block;
+		}
+		
+		#img2{
+			position: relative;
+			margin-bottom:10px;
+			z-index:1;
+		}
+		
+		 #img3 {
+			position: relative;
+			margin-bottom:10px;
+			z-index:1;
+			}
+@media screen and (max-width: 60.75em){
+#img1 {
+			position: relative;
+			margin: inherit;
+			margin-top: -75px;
+			/*left: 37%;*/
+			z-index:1;
+			display: inline-block;
+		}
+		
+body{
+padding-top:50px;
+
+}
+
+}
+
+@media screen and (max-width: 30em){
+#img1 {
+			position: relative;
+			margin: inherit;
+			margin-top: -75px;
+			/*left: 37%;*/
+			z-index:1;
+			display: inline-block;
+		}
+		
+	body{
+		padding-top:50px;
+		}
+}
 	</style>
-</head>
-<body>
-	<!-- <div class="div1" style="width: 400px;"> -->
-		<button class="button" id="save">Facebook Login</button>
-	<!-- </div> -->
-</body>
+	<script type="text/javascript">
+		function fblogin () {
+			alert("You have clicked fb button");
+		}
+		function twitterlogin () {
+			alert("You have clicked twitter button");	
+		}
+	
+	</script>
+ </head>
+ <body>
+ <div class="center" style="margin-top:10%;">
+	 <img src="img/z-logo.png" class="img-responsive" id="img1" >
+	 <img src="img/fb.png" class="img-responsive" id="img2" onclick="fblogin()">
+	 <img src="img/twitter.png" class="img-responsive" id="img3" onclick="twitterlogin()">
+ 
+ </div>
+ <!--<img src="img/z-logo.png" class="img1">
+ <div class="div1"></div>
+ <img src="img/fb.png" class="img2"><br>
+ <img src="img/twitter.png" class="img3">-->
+ </body>
 </html>
+
+	
