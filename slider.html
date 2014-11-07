@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slider</title>
+    <link href="themes/6/js-image-slider.css" rel="stylesheet" type="text/css" />
+    <!--<script src="themes/6/mcVideoPlugin.js" type="text/javascript"></script>-->
+    
+    <link href="generic.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            background:url(bg-page3.png) no-repeat fixed center center;
+            position: relative;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            height: 100%;
+        }
+        @media ( min-width : 480px) {
+button{
+            position: absolute;
+            right: 114px;
+            top: 9px;
+            border-radius: 5px;
+            background-color: lightyellow;
+            float: right;
+        }
+}
+        
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+    function goto () {
+        window.location="http://www.newlocation.com";   
+    }
+    </script>
+    <div class="div1">
+        <!-- <p>Demos: <a href="demo1.html">1</a><a href="demo2.html">2</a><a href="demo3.html">3</a><a href="demo4.html">4</a> -->
+        <!-- <a href="demo5.html">5</a><a href="demo6.html" class="current">6</a><a href="demo7.html">7</a><a href="demo8.html">8</a></p> -->
+    </div>
+    <div id="sliderFrame">
+        <div id="slider">
+            
+            <img src="slide-img1.png" width="100%"alt="Hey, let us begin our journey of happiness, this 3 minute exercise will surely help you" />
+
+            <img src="slide-img2.png" alt="Observe your thoughts" />
+
+            <img src="slide-img3.png" alt="Analyze the tense" />
+
+            <img src="slide-img4.png" alt="Put your thoughts into the box." />
+            
+        </div>
+        <button onclick="goto()">Let us start!</button>
+    </div>
+    
+
+    <script src="themes/6/js-image-slider.js" type="text/javascript"></script>  
+</body>
+</html>
